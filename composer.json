@@ -17,11 +17,6 @@
         },
         "sort-packages": true
     },
-    "autoload": {
-        "files": [
-            "inc/functions_debug.php"
-        ]
-    },
     "repositories": [
         {
             "type": "package",
