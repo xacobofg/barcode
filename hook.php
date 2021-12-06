@@ -88,7 +88,7 @@ function plugin_barcode_install() {
    $migration->renameTable("glpi_plugin_barcode_config", "glpi_plugin_barcode_configs");
    if (!$DB->tableExists("glpi_plugin_barcode_configs")) {
       $query = "CREATE TABLE `glpi_plugin_barcode_configs` (
-                  `id` int(11) NOT NULL auto_increment,
+                  `id` int NOT NULL auto_increment,
                   `type` varchar(20) collate utf8_unicode_ci default NULL,
                   PRIMARY KEY  (`ID`)
                ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
@@ -104,20 +104,20 @@ function plugin_barcode_install() {
    $migration->renameTable("glpi_plugin_barcode_config_type", "glpi_plugin_barcode_configs_types");
    if (!$DB->tableExists("glpi_plugin_barcode_configs_types")) {
       $query = "CREATE TABLE `glpi_plugin_barcode_configs_types` (
-                  `id` int(11) NOT NULL auto_increment,
+                  `id` int NOT NULL auto_increment,
                   `type` varchar(20) collate utf8_unicode_ci default NULL,
                   `size` varchar(20) collate utf8_unicode_ci default NULL,
                   `orientation` varchar(9) collate utf8_unicode_ci default NULL,
-                  `marginTop` int(11) NULL,
-                  `marginBottom` int(11) NULL,
-                  `marginLeft` int(11) NULL,
-                  `marginRight` int(11) NULL,
-                  `marginHorizontal` int(11) NULL,
-                  `marginVertical` int(11) NULL,
-                  `maxCodeWidth` int(11) NULL,
-                  `maxCodeHeight` int(11) NULL,
-                  `txtSize` int(11) NULL,
-                  `txtSpacing` int(11) NULL,
+                  `marginTop` int NULL,
+                  `marginBottom` int NULL,
+                  `marginLeft` int NULL,
+                  `marginRight` int NULL,
+                  `marginHorizontal` int NULL,
+                  `marginVertical` int NULL,
+                  `maxCodeWidth` int NULL,
+                  `maxCodeHeight` int NULL,
+                  `txtSize` int NULL,
+                  `txtSpacing` int NULL,
                   PRIMARY KEY  (`ID`),
                   UNIQUE  (`type`)
                ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
