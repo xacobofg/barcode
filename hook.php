@@ -94,7 +94,7 @@ function plugin_barcode_install() {
                   `id` int NOT NULL auto_increment,
                   `type` varchar(20) default NULL,
                   PRIMARY KEY  (`ID`)
-               ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation}";
+               ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;";
       $DB->query($query) or die("error creating glpi_plugin_barcode_configs ". $DB->error());
 
       $query = "INSERT INTO `glpi_plugin_barcode_configs`
@@ -123,7 +123,7 @@ function plugin_barcode_install() {
                   `txtSpacing` int NULL,
                   PRIMARY KEY  (`ID`),
                   UNIQUE  (`type`)
-               ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation};";
+               ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;";
       $DB->query($query) or die("error creating glpi_plugin_barcode_configs_types ". $DB->error());
 
       $query = "INSERT INTO `glpi_plugin_barcode_configs_types`
