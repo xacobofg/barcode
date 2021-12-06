@@ -82,6 +82,9 @@ function plugin_barcode_install() {
 
    $migration = new Migration(PLUGIN_BARCODE_VERSION);
 
+   $default_charset = DBConnection::getDefaultCharset();
+   $default_collation = DBConnection::getDefaultCollation();
+
    if (!file_exists(GLPI_PLUGIN_DOC_DIR."/barcode")) {
       mkdir(GLPI_PLUGIN_DOC_DIR."/barcode");
    }
@@ -89,9 +92,9 @@ function plugin_barcode_install() {
    if (!$DB->tableExists("glpi_plugin_barcode_configs")) {
       $query = "CREATE TABLE `glpi_plugin_barcode_configs` (
                   `id` int NOT NULL auto_increment,
-                  `type` varchar(20) collate utf8_unicode_ci default NULL,
+                  `type` varchar(20) default NULL,
                   PRIMARY KEY  (`ID`)
-               ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
+               ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation}";
       $DB->query($query) or die("error creating glpi_plugin_barcode_configs ". $DB->error());
 
       $query = "INSERT INTO `glpi_plugin_barcode_configs`
@@ -105,9 +108,9 @@ function plugin_barcode_install() {
    if (!$DB->tableExists("glpi_plugin_barcode_configs_types")) {
       $query = "CREATE TABLE `glpi_plugin_barcode_configs_types` (
                   `id` int NOT NULL auto_increment,
-                  `type` varchar(20) collate utf8_unicode_ci default NULL,
-                  `size` varchar(20) collate utf8_unicode_ci default NULL,
-                  `orientation` varchar(9) collate utf8_unicode_ci default NULL,
+                  `type` varchar(20) default NULL,
+                  `size` varchar(20) default NULL,
+                  `orientation` varchar(9) default NULL,
                   `marginTop` int NULL,
                   `marginBottom` int NULL,
                   `marginLeft` int NULL,
@@ -120,7 +123,7 @@ function plugin_barcode_install() {
                   `txtSpacing` int NULL,
                   PRIMARY KEY  (`ID`),
                   UNIQUE  (`type`)
-               ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+               ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation};";
       $DB->query($query) or die("error creating glpi_plugin_barcode_configs_types ". $DB->error());
 
       $query = "INSERT INTO `glpi_plugin_barcode_configs_types`
